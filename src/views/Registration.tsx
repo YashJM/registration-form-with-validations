@@ -4,12 +4,6 @@ import { ToastContainer } from 'react-toastify';
 
 import RegistrationForm from '../components/RegistrationForm';
 
-const contextClass = {
-  success: "bg-blue-600",
-  error: "bg-red-600",
-};
-
-
 const Registration: React.FC = () => {
   return (
     <Box width={'100%'}>

@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import ContactNumberInput from './customFormInputs/ContactNumberInput';
 import CustomDatePicker from './customFormInputs/CustomDatePicker';
 import { registerUser } from '../api/user';
+import LoadingScreen from './LoadingScreen';
 
 type RegistrationFormProps = {
   [key: string]: any;
@@ -22,26 +23,37 @@ interface IMyForm {
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = () => {
+  const [loading, setLoading] = useState(false);
+
   const {
     handleSubmit,
     formState: { errors },
     register,
     watch,
     control,
+    reset,
   } = useForm<IMyForm>();
   const password = useRef({});
   password.current = watch('password', '');
 
   const onSubmit = (data: IMyForm) => {
+    setLoading(true);
     const userData = {
       full_name: data.fullName,
       contact_number: data.contactNumber,
       email: data.email,
-      date_of_birth: data.date + data.month + data.year,
+      date_of_birth: `${data.date}${data.month}${data.year}`,
       password: data.password,
     };
-      registerUser(userData);
+    registerUser(userData).then(() => {
+      setLoading(false);
+      reset();
+    });
   };
+
+  const onCancel = () => {
+    reset();
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -133,11 +145,13 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
         justifyContent="center"
         sx={{ gap: '15px' }}
       >
-        <Button variant="outlined">Cancel</Button>
+        <Button onClick={() => onCancel()} variant="outlined">Cancel</Button>
         <Button type="submit" variant="contained">
           Submit
         </Button>
       </Box>
+
+      <LoadingScreen loading={loading} />
     </form>
   );
 };

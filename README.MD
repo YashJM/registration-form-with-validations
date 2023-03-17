@@ -1,8 +1,8 @@
 # Registration Form With Validation
 
-This repo contains Full Stack Developer Skills Test which was created as part of job application process of  idea theorem
+This repository includes a Full Stack Developer Skills Test that was developed as part of the job application process for Idea Theorem.
 
-## Run it Locally 
+## Run it locally 
 
 1. Clone the repository
 ```
@@ -16,7 +16,23 @@ npm install
 ```
 npm run dev
 ```
-## Technologies Used
-- [Vite](https://vitejs.dev/guide/)
-- [ReactTS](https://www.typescriptlang.org/docs/handbook/react.html)
-- [MaterialUI](https://mui.com/)
+
+## Publish manually using dist folder
+
+1. To Build, first run:
+```
+npm run build
+```
+
+2. Deploy dist folder:
+```
+Upload dist folder directly to the registry
+```
+
+## Publish or deploy from github (CI/CD)
+
+1. Make sure the following is set in deployment environment
+```
+Build command: npm run build
+Publish directory: dist
+```
