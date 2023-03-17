@@ -1,4 +1,6 @@
 import React from 'react';
+import { Box } from '@mui/material';
+
 import Navbar from '../components/Navbar';
 
 type AppLayoutProps = {
@@ -11,7 +13,9 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
   return (
     <div>
       <Navbar />
-      {children}
+      <Box pt={'100px'}>
+        {children}
+      </Box>
     </div>
   );
 };
