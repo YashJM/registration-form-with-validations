@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import ContactNumberInput from './customFormInputs/ContactNumberInput';
 import CustomDatePicker from './customFormInputs/CustomDatePicker';
+import { registerUser } from '../api/user';
 
 type RegistrationFormProps = {
   [key: string]: any;
@@ -32,12 +33,14 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
   password.current = watch('password', '');
 
   const onSubmit = (data: IMyForm) => {
-    alert(JSON.stringify(data));
-  };
-
-  const isFuture = (date: Date) => {
-    console.log(date);
-    return date;
+    const userData = {
+      full_name: data.fullName,
+      contact_number: data.contactNumber,
+      email: data.email,
+      date_of_birth: data.date + data.month + data.year,
+      password: data.password,
+    };
+      registerUser(userData);
   };
 
   return (
@@ -88,6 +91,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
         <div className="inputContainer">
           <label htmlFor="password">Password</label>
           <TextField
+            type={'password'}
             id="password"
             label="Password"
             error={!!errors.password}
@@ -110,6 +114,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
         <div className="inputContainer">
           <label htmlFor="passwordConfirmation">Confirm Password</label>
           <TextField
+            type={'password'}
             id="passwordConfirmation"
             label="Confirm Password"
             error={!!errors.passwordConfirmation}
