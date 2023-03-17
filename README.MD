@@ -7,7 +7,7 @@ This repository includes a Full Stack Developer Skills Test that was developed a
 1. Clone the repository
 ```
 git clone https://github.com/YashJM/registration-form-with-validations.git
-or download repo (unsiz project after downloading)
+or download repo (unzip project after downloading)
 ```
 2. Make sure you have `node` and `npm` installed globally on your machine.
 ```
