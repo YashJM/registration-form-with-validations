@@ -49,6 +49,7 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = (props) => {
           <InputLabel id="day">Day</InputLabel>
           <Controller
             name="day"
+            defaultValue=''
             control={props.control}
             rules={{ required: true }}
             render={({ field, fieldState: { error } }) => (
@@ -71,8 +72,8 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = (props) => {
           <InputLabel id="day">Month</InputLabel>
           <Controller
             name="month"
+            defaultValue=''
             control={props.control}
-            defaultValue=""
             rules={{ required: true }}
             render={({ field, fieldState: { error } }) => (
               <div>
@@ -94,8 +95,8 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = (props) => {
           <InputLabel id="day">Year</InputLabel>
           <Controller
             name="year"
+            defaultValue=''
             control={props.control}
-            defaultValue=""
             rules={{ required: true }}
             render={({ field, fieldState: { error } }) => (
               <div>
