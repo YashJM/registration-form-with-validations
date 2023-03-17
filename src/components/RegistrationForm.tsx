@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
-import { Box, TextField, Button, InputAdornment } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import React, { useRef } from 'react';
+import { Box, TextField, Button } from '@mui/material';
+import { useForm } from 'react-hook-form';
 
-import { useForm, Controller } from 'react-hook-form';
-import MuiPhoneNumber from 'material-ui-phone-number-2';
-
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import ContactNumberInput from './customFormInputs/ContactNumberInput';
+import CustomDatePicker from './customFormInputs/CustomDatePicker';
 
 type RegistrationFormProps = {
   [key: string]: any;
@@ -18,12 +14,13 @@ interface IMyForm {
   contactNumber: string;
   email: string;
   date: string;
+  month: string;
+  year: string;
   password: string;
-  confirmPassword: string;
+  passwordConfirmation: string;
 }
 
 const RegistrationForm: React.FC<RegistrationFormProps> = () => {
-  const [date, setDate] = useState('');
   const {
     handleSubmit,
     formState: { errors },
@@ -31,6 +28,8 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
     watch,
     control,
   } = useForm<IMyForm>();
+  const password = useRef({});
+  password.current = watch('password', '');
 
   const onSubmit = (data: IMyForm) => {
     alert(JSON.stringify(data));
@@ -73,11 +72,52 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
             error={!!errors.email}
             helperText={errors?.email?.message}
             inputProps={register('email', {
-              required: 'This field is required',
+              required: 'Email is required',
               pattern: {
                 value: /^\S+@\S+\.\S+$/,
                 message: 'Enter a valid email address',
               },
+            })}
+          />
+        </div>
+
+        <div className="inputContainer">
+          <CustomDatePicker control={control} />
+        </div>
+
+        <div className="inputContainer">
+          <label htmlFor="password">Password</label>
+          <TextField
+            id="password"
+            label="Password"
+            error={!!errors.password}
+            helperText={errors?.password?.message}
+            inputProps={register('password', {
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Minimum length should be 8 characters',
+              },
+              pattern: {
+                value: /^[a-zA-Z0-9]+$/,
+                message:
+                  'Must have Lower case (a-z), upper case (A-Z) and numbers (0-9)',
+              },
+            })}
+          />
+        </div>
+
+        <div className="inputContainer">
+          <label htmlFor="passwordConfirmation">Confirm Password</label>
+          <TextField
+            id="passwordConfirmation"
+            label="Confirm Password"
+            error={!!errors.passwordConfirmation}
+            helperText={errors?.passwordConfirmation?.message}
+            inputProps={register('passwordConfirmation', {
+              required: 'Confirm password is required',
+              validate: (value) =>
+                value === password.current || 'The passwords do not match',
             })}
           />
         </div>

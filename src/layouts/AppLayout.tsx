@@ -13,7 +13,7 @@ const AppLayout: React.FC<AppLayoutProps> = (props) => {
   return (
     <div>
       <Navbar />
-      <Box pt={'100px'}>
+      <Box py={'100px'}>
         {children}
       </Box>
     </div>
