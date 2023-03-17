@@ -37,7 +37,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
       full_name: data.fullName,
       contact_number: data.contactNumber,
       email: data.email,
-      date_of_birth: data.date + data.month + data.year,
+      date_of_birth: `${data.date}${data.month}${data.year}`,
       password: data.password,
     };
       registerUser(userData);

@@ -43,21 +43,21 @@ const CustomDatePicker: React.FC<CustomDatePickerProps> = (props) => {
   };
   return (
     <>
-      <label htmlFor="dateOfBirth">Date of Birth</label>
+      <label htmlFor="date">Date of Birth</label>
       <Box display={'flex'} gap={'5px'} justifyContent={'space-between'}>
         <FormControl style={{ flex: 1 }}>
           <InputLabel id="day">Day</InputLabel>
           <Controller
-            name="day"
+            name="date"
             defaultValue=''
             control={props.control}
             rules={{ required: true }}
             render={({ field, fieldState: { error } }) => (
               <div>
-                <Select fullWidth label="Day" error={!!error} {...field}>
-                  {dayValues.map((day) => (
-                    <MenuItem key={day.value} value={day.value}>
-                      {day.label}
+                <Select fullWidth label="Date" error={!!error} {...field}>
+                  {dayValues.map((date) => (
+                    <MenuItem key={date.value} value={date.value}>
+                      {date.label}
                     </MenuItem>
                   ))}
                 </Select>
