@@ -2,6 +2,10 @@
 
 This repository includes a Full Stack Developer Skills Test that was developed as part of the job application process for Idea Theorem.
 
+Follow the instructions below to view the code and to run app locally or 
+
+visit: https://statuesque-sorbet-05e412.netlify.app/ to see it live.
+
 ## Run it locally 
 
 1. Clone the repository
