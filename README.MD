@@ -30,16 +30,16 @@ http://localhost:5173/
 ```
 
 
-## Publish manually using dist folder
+## Publish manually using with dist/build folder
 
 1. To Build, first run:
 ```
 npm run build
 ```
 
-2. Deploy dist folder:
+2. Deploy `dist` folder:
 ```
-Upload dist folder directly to the registry
+Upload `dist` folder directly to the registry
 ```
 
 ## Publish or deploy from github (CI/CD)
