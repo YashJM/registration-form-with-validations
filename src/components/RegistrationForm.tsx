@@ -115,7 +115,7 @@ const RegistrationForm: React.FC<RegistrationFormProps> = () => {
                 message: 'Minimum length should be 8 characters',
               },
               pattern: {
-                value: /^[a-zA-Z0-9]+$/,
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/,
                 message:
                   'Must have Lower case (a-z), upper case (A-Z) and numbers (0-9)',
               },
